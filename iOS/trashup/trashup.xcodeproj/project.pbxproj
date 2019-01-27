@@ -12,6 +12,8 @@
 		9C6A36CA21FDAB9100A059EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6A36C821FDAB9100A059EB /* Main.storyboard */; };
 		9C6A36CC21FDAB9200A059EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C6A36CB21FDAB9200A059EB /* Assets.xcassets */; };
 		9C6A36CF21FDAB9200A059EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6A36CD21FDAB9200A059EB /* LaunchScreen.storyboard */; };
+		9CB25E9D21FDFF5500852644 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB25E9C21FDFF5500852644 /* SettingViewController.swift */; };
+		9CFA543021FDF141005C5CD6 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA542F21FDF141005C5CD6 /* GraphViewController.swift */; };
 		BD1B21352419CC6B70F685AD /* Pods_trashup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29BA1CE2895B7159BA2849C /* Pods_trashup.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,7 @@
 		9C6A36CB21FDAB9200A059EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C6A36CE21FDAB9200A059EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C6A36D021FDAB9200A059EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CB25E9C21FDFF5500852644 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9CFA542521FDD98C005C5CD6 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		9CFA542621FDD98C005C5CD6 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9CFA542721FDD98C005C5CD6 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -34,6 +37,7 @@
 		9CFA542C21FDD98D005C5CD6 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		9CFA542D21FDD98D005C5CD6 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		9CFA542E21FDD98D005C5CD6 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		9CFA542F21FDF141005C5CD6 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		F29BA1CE2895B7159BA2849C /* Pods_trashup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trashup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD9BA28A4162174A1E32A737 /* Pods-trashup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trashup.release.xcconfig"; path = "Pods/Target Support Files/Pods-trashup/Pods-trashup.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +100,8 @@
 		9CFA542121FDD938005C5CD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CFA542F21FDF141005C5CD6 /* GraphViewController.swift */,
+				9CB25E9C21FDFF5500852644 /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,6 +248,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-trashup/Pods-trashup-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -250,6 +257,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CFA543021FDF141005C5CD6 /* GraphViewController.swift in Sources */,
 				9C6A36C721FDAB9100A059EB /* ViewController.swift in Sources */,
 				9C6A36C521FDAB9100A059EB /* AppDelegate.swift in Sources */,
+				9CB25E9D21FDFF5500852644 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +425,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBG82V3K6W;
 				INFOPLIST_FILE = trashup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,6 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBG82V3K6W;
 				INFOPLIST_FILE = trashup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

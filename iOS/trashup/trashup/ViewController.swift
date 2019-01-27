@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import ChameleonFramework
 
 
 class ViewController: UIViewController {
@@ -100,9 +101,24 @@ class ViewController: UIViewController {
     }
     
     
+    func animate (this button: UIButton){
+        
+        UIView.animate(withDuration: 0.6,
+                       animations: {
+                        button.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        },
+                       completion: { _ in
+                        UIView.animate(withDuration: 0.6) {
+                            button.transform = CGAffineTransform.identity
+                        }
+        })
+        
+    }
+    
     
     @IBAction func generalButtonPressed(_ sender: Any) {
         
+        animate(this: generalWButton)
         open(the: "decompose")
         
     }
@@ -111,14 +127,21 @@ class ViewController: UIViewController {
     
     @IBAction func recycleButtonPressed(_ sender: Any) {
         
+        animate(this: recycleWButton)
+
         open(the: "recycle")
     }
     
 
     @IBAction func wasteButtonPressed(_ sender: Any) {
         
+        animate(this: wasteWButton)
         open(the: "waste")
 
     }
+    
+    
+    
+    
 }
 
