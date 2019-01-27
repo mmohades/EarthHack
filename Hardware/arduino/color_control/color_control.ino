@@ -27,7 +27,6 @@ void setup() {
     pinMode(echoPin, INPUT);
     off();
 
-    // print "Ready" once
 
 }
 
@@ -51,7 +50,6 @@ int calculate_distance() {
 
 
 }
-
 
 
 
@@ -93,19 +91,15 @@ void loop() {
 
   calculate_distance();
   Serial.println(distance);
-//
-//  if(distance < 5){
-//    
-//    whiteLight();
-//    delay(100);
-//    greenLight();
-//    }
 
 
 
+    char inByte = ' ';
 
-     char inByte = ' ';
     if(Serial.available() > 0){
+
+
+      
         char inByte = Serial.read();
 
         switch(inByte){
@@ -114,30 +108,37 @@ void loop() {
             // color is white
 
             whiteLight();
+            Serial.flush();
             break;
-
 
 
             case '2':
             // color is green
 
             greenLight();
+            Serial.flush();
             break;
 
             case '3':
             // color is red
 
             redLight();
+            Serial.flush();
             break;
 
             case '4':
             // swithc off light
 
             off();
+            Serial.flush();
             break;
 
-            default: break; }
-        
+            default: 
+            Serial.flush();
+            break; }
+
+
+
         }
 
     delay(100);

@@ -1,4 +1,5 @@
 import serial
+
 from time import sleep
 ser = serial.Serial('/dev/cu.usbmodem141401', 9600)
 
