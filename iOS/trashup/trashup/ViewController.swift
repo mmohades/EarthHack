@@ -17,8 +17,11 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var qouteLabel: UILabel!
-    let url = "http://localhost:5000/qoute"
-    let url2 = "http://142.44.210.56:8080/open/"
+    let qUrl = "http://142.44.210.56:8080/quote"
+    let url2 = "http://142.44.210.56:8080/"
+    var status = ["waste":0, "recycle":0, "landfill":0]
+    var moneyRate = ["waste":3.0, "recycle": 5.0, "landfill": 2.0]
+    var moneySaved = 0.0
     
     
     @IBOutlet weak var generalWButton: UIButton!
@@ -30,6 +33,9 @@ class ViewController: UIViewController {
         update_qoute()
         profilePic.image = #imageLiteral(resourceName: "Mark")
         makeRounded()
+        updateStatus()
+//        updateGui()
+
 
     }
 
@@ -54,13 +60,13 @@ class ViewController: UIViewController {
     
     func update_qoute(){
         
-        Alamofire.request(url, method: .get)
+        Alamofire.request(qUrl, method: .get)
             .responseJSON { response in
                 if response.result.isSuccess {
                     
                     print("Sucess!")
                     
-                    if let qoute : String = JSON(response.result.value!)["qoute"].string{
+                    if let qoute : String = JSON(response.result.value!)["quote"].string{
                         
                         self.qouteLabel.text = qoute
                         self.updateGui()
@@ -83,7 +89,7 @@ class ViewController: UIViewController {
     
     func open(the trash: String){
         
-        Alamofire.request(url2 + trash, method: .post)
+        Alamofire.request(url2 + "/open/\(trash)", method: .post)
             .responseJSON { response in
                 
                 if response.result.isSuccess {
@@ -114,6 +120,51 @@ class ViewController: UIViewController {
         })
         
     }
+    
+    
+    func updateStatus(){
+        
+        Alamofire.request(url2+"stats", method: .get)
+            .responseJSON { response in
+                if response.result.isSuccess {
+                    
+                    print("Sucess!")
+                    
+                    if let decompValue = JSON(response.result.value!)["decompose"].int{
+                        
+                        self.status["decompose"] = decompValue
+                        
+                    }
+                    if let recyValue = JSON(response.result.value!)["recycle"].int{
+                        
+                        self.status["recycle"] = recyValue
+                        //                        self.updateGui()
+                    }
+                }
+                    
+                else {
+                    print("Error: \(String(describing: response.result.error))")
+                                    }
+        }
+        
+        
+    }
+    
+
+    
+    func calculateMoneySaved(){
+        
+        
+        for item in status{
+            
+            moneySaved += moneyRate[item.key]! * Double (item.value)
+            
+        }
+        
+    }
+    
+    
+    
     
     
     @IBAction func generalButtonPressed(_ sender: Any) {

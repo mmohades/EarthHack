@@ -8,13 +8,18 @@
 
 import UIKit
 import Charts
+import Alamofire
+import SwiftyJSON
 class GraphViewController: UIViewController {
 
     
     @IBOutlet weak var pieChart: PieChartView!
-    var wasteData = PieChartDataEntry(value: 5)
+    var wasteData = PieChartDataEntry(value: 8)
     var recycleData = PieChartDataEntry(value: 10)
-    var composeData = PieChartDataEntry(value: 15)
+    var landfillData = PieChartDataEntry(value: 3)
+    var status = ["waste":2, "recycle":3, "landfill":1]
+    let url2 = "http://142.44.210.56:8080/stats"
+
     
     var numberOfDownloadsDataEnteries = [PieChartDataEntry]()
 
@@ -25,9 +30,12 @@ class GraphViewController: UIViewController {
         
         wasteData.label = "Wasted"
         recycleData.label = "Recycled"
-        composeData.label = "Composed"
+        landfillData.label = "Composed"
         
-        numberOfDownloadsDataEnteries = [wasteData, recycleData, composeData]
+        updateStatus()
+        
+        
+        numberOfDownloadsDataEnteries = [wasteData, recycleData, landfillData]
         
         updateChartData()
         
@@ -40,6 +48,7 @@ class GraphViewController: UIViewController {
     
     func updateChartData(){
         
+        
         let chartDataSet = PieChartDataSet(values: numberOfDownloadsDataEnteries, label: nil)
         let chartData = PieChartData(dataSet: chartDataSet)
         
@@ -51,4 +60,47 @@ class GraphViewController: UIViewController {
         
     }
 
+    
+    func updateStatus(){
+        
+        Alamofire.request(url2, method: .get)
+            .responseJSON { response in
+                if response.result.isSuccess {
+                    
+                    print("Sucess22!")
+
+                    if let decompValue = JSON(response.result.value!)["decompose"].int{
+                        
+                        
+                        self.status["decompose"] = decompValue
+
+
+                    }
+                    if let recyValue = JSON(response.result.value!)["recycle"].int{
+
+                        self.status["recycle"] = recyValue
+                        //                        self.updateGui()
+//                    }
+//
+                        for item in self.status{
+                            
+                            print(item.value)
+                            
+                        }
+//                    self.wasteData.value = Double (self.status["waste"]!)
+//                    self.landfillData.value = Double (self.status["landfill"]!)
+//                    self.recycleData.value = Double (self.status["recycle"]!)
+                }
+                    
+                else {
+                    print("Error: \(String(describing: response.result.error))")
+                
+
+                }
+        }
+        
+        
+    }
+    
+    }
 }
