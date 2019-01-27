@@ -17,7 +17,7 @@ class GraphViewController: UIViewController {
     var wasteData = PieChartDataEntry(value: 8)
     var recycleData = PieChartDataEntry(value: 10)
     var landfillData = PieChartDataEntry(value: 3)
-    var status = ["waste":2, "recycle":3, "landfill":1]
+    var status = ["waste":2, "recycle":3, "decompose":1]
     let url2 = "http://142.44.210.56:8080/stats"
 
     
@@ -30,7 +30,7 @@ class GraphViewController: UIViewController {
         
         wasteData.label = "Wasted"
         recycleData.label = "Recycled"
-        landfillData.label = "Composed"
+        landfillData.label = "Decompose"
         
         updateStatus()
         
@@ -79,17 +79,16 @@ class GraphViewController: UIViewController {
                     if let recyValue = JSON(response.result.value!)["recycle"].int{
 
                         self.status["recycle"] = recyValue
-                        //                        self.updateGui()
-//                    }
-//
-                        for item in self.status{
-                            
-                            print(item.value)
-                            
-                        }
-//                    self.wasteData.value = Double (self.status["waste"]!)
-//                    self.landfillData.value = Double (self.status["landfill"]!)
-//                    self.recycleData.value = Double (self.status["recycle"]!)
+
+                    
+                    if let recyValue = JSON(response.result.value!)["waste"].int{
+                        
+                        self.status["waste"] = recyValue
+
+                    }
+                    self.wasteData.value = Double (self.status["waste"]!)
+                    self.landfillData.value = Double (self.status["decompose"]!)
+                    self.recycleData.value = Double (self.status["recycle"]!)
                 }
                     
                 else {

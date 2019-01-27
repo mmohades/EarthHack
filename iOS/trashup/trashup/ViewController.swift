@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var qouteLabel: UILabel!
     let qUrl = "http://142.44.210.56:8080/quote"
     let url2 = "http://142.44.210.56:8080/"
-    var status = ["waste":0, "recycle":0, "landfill":0]
-    var moneyRate = ["waste":3.0, "recycle": 5.0, "landfill": 2.0]
+    var status = ["waste":0, "recycle":0, "decompose":0]
+    var moneyRate = ["waste":3.0, "recycle": 5.0, "decompose": 2.0]
     var moneySaved = 0.0
     
     
@@ -133,6 +133,7 @@ class ViewController: UIViewController {
                     if let decompValue = JSON(response.result.value!)["decompose"].int{
                         
                         self.status["decompose"] = decompValue
+//                        self.updateGui()
                         
                     }
                     if let recyValue = JSON(response.result.value!)["recycle"].int{
