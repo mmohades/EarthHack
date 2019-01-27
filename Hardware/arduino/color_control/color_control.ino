@@ -1,6 +1,14 @@
 int redPin = 9
 int greenPin = 10
 int bluePin = 11
+const int trigPin = 4;
+const int echoPin = 2;
+long duration;
+int distance;
+int counterOff = 0;
+int counterOn = 0;
+bool state = false;
+
 
 //uncomment this line if using a Common Anode LED
 //  # define COMMON_ANODE
@@ -10,11 +18,36 @@ void setup() {
 
     Serial.begin(9600)
     // set the baud rate
+
     pinMode(redPin, OUTPUT)
     pinMode(greenPin, OUTPUT)
     pinMode(bluePin, OUTPUT)
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);  
+   
     Serial.println("Ready")
     // print "Ready" once
+
+}
+
+int calculate_distance() {
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calculating the distance
+  distance = duration * 0.034 / 2;
+
+  return distance;
+
 
 }
 
@@ -61,6 +94,13 @@ void loop() {
 
 
 void loop() {
+
+
+  calculate_distance();
+  Serial.println(distance);
+
+
+
     char inByte = ' ';
     if(Serial.available() > 0){
         char inByte = Serial.read();
