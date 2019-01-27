@@ -1,6 +1,15 @@
-int redPin = 9
-int greenPin = 10
-int bluePin = 11
+int redPin = 9;
+int greenPin = 10;
+int bluePin = 11;
+const int trigPin = 4;
+const int echoPin = 2;
+long duration;
+int distance;
+int counterOff = 0;
+int counterOn = 0;
+bool state = false;
+
+
 
 //uncomment this line if using a Common Anode LED
 //  # define COMMON_ANODE
@@ -8,35 +17,62 @@ int bluePin = 11
 void setup() {
 
 
-    Serial.begin(9600)
+    Serial.begin(9600);
     // set the baud rate
-    pinMode(redPin, OUTPUT)
-    pinMode(greenPin, OUTPUT)
-    pinMode(bluePin, OUTPUT)
-    Serial.println("Ready")
+
+    pinMode(redPin, OUTPUT);
+    pinMode(greenPin, OUTPUT);
+    pinMode(bluePin, OUTPUT);
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    off();
+
     // print "Ready" once
 
 }
 
+int calculate_distance() {
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calculating the distance
+  distance = duration * 0.034 / 2;
+
+  return distance;
+
+
+}
+
+
+
 
 void greenLight(){
-    setColor(255, 255, 0)
+    setColor(255, 255, 0);
     // green
-    delay(1000)
+    delay(1000);
 }
 void redLight(){
-    setColor(0, 255, 255)
+    setColor(0, 255, 255);
     // red
-    delay(1000)
+    delay(1000);
 }
 void whiteLight(){
-    setColor(0, 0, 0)
-    delay(1000)
+    setColor(0, 0, 0);
+    delay(1000);
 }
 
 void off() {
-    setColor(255, 255, 255)
-    delay(1000)
+    setColor(255, 255, 255);
+    delay(1000);
 }
 
 
@@ -46,22 +82,29 @@ void setColor(int red, int green, int blue) {
     // green = 255 - green
     // blue = 255 - blue
     //  # endif
-    analogWrite(redPin, red)
-    analogWrite(greenPin, green)
-    analogWrite(bluePin, blue)
-}
-
-void loop() {
-
-    greenLight()
-    redLight()
-    whiteLight()
-    off()
+    analogWrite(redPin, red);
+    analogWrite(greenPin, green);
+    analogWrite(bluePin, blue);
 }
 
 
 void loop() {
-    char inByte = ' ';
+
+
+  calculate_distance();
+  Serial.println(distance);
+//
+//  if(distance < 5){
+//    
+//    whiteLight();
+//    delay(100);
+//    greenLight();
+//    }
+
+
+
+
+     char inByte = ' ';
     if(Serial.available() > 0){
         char inByte = Serial.read();
 
@@ -94,8 +137,10 @@ void loop() {
             break;
 
             default: break; }
+        
+        }
 
-        Serial.println(inByte);}
+    delay(100);
 
-    delay(100); // delay for 1 / 10 of a second
+
 }
