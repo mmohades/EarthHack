@@ -24,6 +24,16 @@
 		9C6A36CB21FDAB9200A059EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C6A36CE21FDAB9200A059EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C6A36D021FDAB9200A059EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CFA542521FDD98C005C5CD6 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		9CFA542621FDD98C005C5CD6 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		9CFA542721FDD98C005C5CD6 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		9CFA542821FDD98C005C5CD6 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		9CFA542921FDD98C005C5CD6 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		9CFA542A21FDD98D005C5CD6 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9CFA542B21FDD98D005C5CD6 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		9CFA542C21FDD98D005C5CD6 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		9CFA542D21FDD98D005C5CD6 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		9CFA542E21FDD98D005C5CD6 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		F29BA1CE2895B7159BA2849C /* Pods_trashup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_trashup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD9BA28A4162174A1E32A737 /* Pods-trashup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trashup.release.xcconfig"; path = "Pods/Target Support Files/Pods-trashup/Pods-trashup.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +80,9 @@
 		9C6A36C321FDAB9100A059EB /* trashup */ = {
 			isa = PBXGroup;
 			children = (
+				9CFA542321FDD953005C5CD6 /* Views */,
+				9CFA542221FDD94B005C5CD6 /* Supporting Files */,
+				9CFA542121FDD938005C5CD6 /* Controllers */,
 				9C6A36C421FDAB9100A059EB /* AppDelegate.swift */,
 				9C6A36C621FDAB9100A059EB /* ViewController.swift */,
 				9C6A36C821FDAB9100A059EB /* Main.storyboard */,
@@ -78,6 +91,45 @@
 				9C6A36D021FDAB9200A059EB /* Info.plist */,
 			);
 			path = trashup;
+			sourceTree = "<group>";
+		};
+		9CFA542121FDD938005C5CD6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9CFA542221FDD94B005C5CD6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9CFA542421FDD978005C5CD6 /* fonts */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CFA542321FDD953005C5CD6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9CFA542421FDD978005C5CD6 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9CFA542521FDD98C005C5CD6 /* OpenSans-Bold.ttf */,
+				9CFA542A21FDD98D005C5CD6 /* OpenSans-BoldItalic.ttf */,
+				9CFA542721FDD98C005C5CD6 /* OpenSans-ExtraBold.ttf */,
+				9CFA542921FDD98C005C5CD6 /* OpenSans-ExtraBoldItalic.ttf */,
+				9CFA542E21FDD98D005C5CD6 /* OpenSans-Italic.ttf */,
+				9CFA542B21FDD98D005C5CD6 /* OpenSans-Light.ttf */,
+				9CFA542C21FDD98D005C5CD6 /* OpenSans-LightItalic.ttf */,
+				9CFA542D21FDD98D005C5CD6 /* OpenSans-Regular.ttf */,
+				9CFA542621FDD98C005C5CD6 /* OpenSans-SemiBold.ttf */,
+				9CFA542821FDD98C005C5CD6 /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		BD595A5099A8D5F7CA79627F /* Frameworks */ = {

@@ -17,17 +17,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var qouteLabel: UILabel!
     let url = "http://localhost:5000/qoute"
+    let url2 = "http://142.44.210.56:8080/open/"
     
     
+    @IBOutlet weak var generalWButton: UIButton!
+    @IBOutlet weak var recycleWButton: UIButton!
+    @IBOutlet weak var wasteWButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profilePic.image = #imageLiteral(resourceName: "Mark")
-
-        profilePic.layer.masksToBounds = true
-        profilePic.layer.cornerRadius = 32 / 2
         update_qoute()
-        
+        profilePic.image = #imageLiteral(resourceName: "Mark")
+        makeRounded()
 
     }
 
@@ -36,6 +37,17 @@ class ViewController: UIViewController {
         
         self.qouteLabel.sizeToFit()
         
+    }
+    
+    func makeRounded(){
+        
+        let items = [generalWButton, wasteWButton, recycleWButton, profilePic]
+        
+        for item in items{
+
+            item!.layer.masksToBounds = true
+            item!.layer.cornerRadius = 32/2
+        }
         
     }
     
@@ -47,14 +59,12 @@ class ViewController: UIViewController {
                     
                     print("Sucess!")
                     
-                    if let qoute : String = JSON(response.result.value!)["qoute"].string!{
+                    if let qoute : String = JSON(response.result.value!)["qoute"].string{
                         
                         self.qouteLabel.text = qoute
                         self.updateGui()
                         
                     }
-                    
-                
                     
                 }
                     
@@ -69,6 +79,46 @@ class ViewController: UIViewController {
     }
     
     
+    
+    func open(the trash: String){
+        
+        Alamofire.request(url2 + trash, method: .post)
+            .responseJSON { response in
+                
+                if response.result.isSuccess {
+        
+                    print("Sucess!")
+                }
+                    
+                else {
+                    
+                    print("Error: \(String(describing: response.result.error))")
+                    
+                }
+        }
+        
+    }
+    
+    
+    
+    @IBAction func generalButtonPressed(_ sender: Any) {
+        
+        open(the: "decompose")
+        
+    }
+    
+    
+    
+    @IBAction func recycleButtonPressed(_ sender: Any) {
+        
+        open(the: "recycle")
+    }
+    
 
+    @IBAction func wasteButtonPressed(_ sender: Any) {
+        
+        open(the: "waste")
+
+    }
 }
 
